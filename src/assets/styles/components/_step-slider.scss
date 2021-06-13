@@ -1,0 +1,139 @@
+.step-slider-container {
+    user-select: none;
+    position: relative;
+    display: inline-flex;
+    width: 300px;
+    margin: 2px;
+
+    input[type="range"] {
+        @include input-range-base-mixin;
+        @include input-range-custom-mixin;
+
+        cursor: $cursor;
+        height: $element-height;
+    }
+
+    &.labels-position-top {
+        flex-direction: column;
+
+        .step-slider-labels-container {
+            .step-slider-label {
+                &::after {
+                    bottom: $thumb-position;
+                }
+
+                &:first-child:not(.selected) {
+                    &::before {
+                        bottom: $track-position;
+                    }
+                }
+                &.selected {
+                    &:after {
+                        transform: translate(calc(0px - #{$selected-thumb-border-size}), $selected-thumb-border-size);
+                    }
+                    &::before {
+                        bottom: $track-position;
+                    }
+                }
+            }
+        }
+    }
+
+    &.labels-position-bottom {
+        flex-direction: column-reverse;
+
+        .step-slider-labels-container {
+            .step-slider-label {
+                &::after {
+                    top: $thumb-position;
+                }
+
+                &:first-child:not(.selected) {
+                    &::before {
+                        top: $track-position;
+                    }
+                }
+                &.selected {
+                    &:after {
+                        transform: translate($selected-thumb-border-size, calc(0px - #{$selected-thumb-border-size}));
+                    }
+                    &::before {
+                        top: $track-position;
+                    }
+                }
+            }
+        }
+    }
+
+    .step-slider-labels-container {
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        .step-slider-label {
+            $index: var(--index);
+            $factor: calc(#{$index} / #{$last-index});
+            user-select: none;
+            position: relative;
+            color: $active-label-color;
+
+            &::after {
+                content: "";
+                pointer-events: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0;
+                margin-left: calc(#{$factor} * (100% - #{$thumb-size}));
+                width: $thumb-size;
+                height: $thumb-size;
+                background-color: $active-thumb-color;
+                border-radius: 9999px;
+            }
+
+            &:first-child:not(.selected) {
+                &::before {
+                    content: "";
+                    pointer-events: none;
+                    position: absolute;
+                    left: $thumb-size-half;
+                    width: $active-track-width;
+                    margin: 0;
+                    height: $track-size;
+                    background-color: $active-track-color;
+                }
+            }
+
+            &.selected {
+                font-weight: 800;
+
+                &:after {
+                    border: $selected-thumb-border-size solid $selected-thumb-border-color;
+                }
+
+                &::before {
+                    content: "";
+                    pointer-events: none;
+                    position: absolute;
+                    left: 0;
+                    margin: 0;
+                    margin-left: calc((#{$factor} * (100% - #{$thumb-size})) + #{$thumb-size});
+                    width: $inactive-track-width;
+                    height: $track-size;
+                    background-color: $inactive-track-color;
+                }
+
+                & ~ .step-slider-label {
+                    color: $inactive-label-color;
+                    &::after {
+                        background-color: $inactive-thumb-color;
+                    }
+                }
+            }
+        }
+    }
+}

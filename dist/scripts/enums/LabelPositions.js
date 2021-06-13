@@ -1,0 +1,1 @@
+var LabelPositions;(function(a){a["TOP"]="top";a["BOTTOM"]="bottom"})(LabelPositions||(LabelPositions={}));export default LabelPositions;

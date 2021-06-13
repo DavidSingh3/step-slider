@@ -1,0 +1,20 @@
+@mixin input-range-custom-mixin {
+  /* Special styling for WebKit/Blink */
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1px;
+    width: 1px;
+  }
+
+  /* All the same stuff for Firefox */
+  &::-moz-range-thumb {
+    height: 1px;
+    width: 1px;
+  }
+
+  /* All the same stuff for IE */
+  &::-ms-thumb {
+    height: 1px;
+    width: 1px;
+  }
+}

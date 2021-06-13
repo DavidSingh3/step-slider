@@ -1,0 +1,1 @@
+var Cursors;(function(a){a["DEFAULT"]="default";a["POINTER"]="pointer"})(Cursors||(Cursors={}));export default Cursors;

@@ -1,0 +1,28 @@
+// css variables
+$width: var(--width);
+$steps: var(--steps);
+$selected-index: var(--selected-index);
+$cursor: var(--cursor);
+$thumb-size: var(--thumb-size);
+$track-size: var(--track-size);
+$label-offset: var(--label-offset);
+$selected-thumb-border-size: var(--selected-thumb-border-size);
+$selected-thumb-border-color: var(--selected-thumb-border-color);
+$active-track-color: var(--active-track-color);
+$active-label-color: var(--active-label-color);
+$active-thumb-color: var(--active-thumb-color);
+$inactive-track-color: var(--inactive-track-color);
+$inactive-label-color: var(--inactive-label-color);
+$inactive-thumb-color: var(--inactive-thumb-color);
+$labels-container-heigh: var(--labels-container-height);
+
+// derived variables
+$last-index: calc(#{$steps} - 1);
+$thumb-size-half: calc(#{$thumb-size} / 2);
+$factor: calc(#{$selected-index} / #{$last-index});
+$track-section-width: calc((#{$width} - #{$thumb-size}) / #{$last-index});
+$active-track-width: calc(#{$track-section-width} * #{$selected-index} - #{$thumb-size-half});
+$inactive-track-width: calc(#{$track-section-width} * (#{$last-index} - #{$selected-index}) - #{$thumb-size-half});
+$track-position: calc(0px - #{$label-offset} - (#{$thumb-size} / 2) - (#{$track-size} / 2));
+$thumb-position: calc(0px - #{$thumb-size} - #{$label-offset});
+$element-height: calc(#{$labels-container-heigh} + #{$label-offset} + #{$thumb-size});
